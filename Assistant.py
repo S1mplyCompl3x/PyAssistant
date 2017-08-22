@@ -3,7 +3,7 @@
 import speech_recognition, wolframalpha, requests, pyperclip
 import os, random, time, webbrowser, sys, subprocess, inspect
 from pyHS100 import SmartPlug, SmartBulb
-from pprint import pformat as pf
+# from pprint import pformat as pf
 # import textIT		#Coming Soon
 
 
