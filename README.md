@@ -6,12 +6,12 @@ PyAssistant -- JARVIS
 **PyAssistant** is a home made customizable voice assistant similar to J.A.R.V.I.S coded in Python made for MacOS (can be adapted for Linux).
 
 ## Getting Started
----------
+
 There are 2 ways to run the script:
 
 ```
 //Voice Activation
-Python PyAssistant.py
+Python PyAssistant.py  or  Python PyAssistant.py talk
 
 //Text Activation
 Python PyAssistant.py text
@@ -19,7 +19,7 @@ Python PyAssistant.py text
 In text mode you can type all the commands which is mostly used to debug new modules faster.
 
 ## Installation
-----------
+
 This project was built for Python3 and uses the following libraries:
 
 * [Speech_Recognition](https://pypi.python.org/pypi/SpeechRecognition/) - Library for STT
@@ -28,6 +28,7 @@ This project was built for Python3 and uses the following libraries:
 * [pyHS100](https://github.com/GadgetReactor/pyHS100) - Library to control TP-Link products
 
 for Linux you need to install:
+
 ```
 sudo apt-get install gnustep-gui-runtime
 ```
@@ -36,7 +37,7 @@ You can install the requirements by running pip on the requirements.txt or insta
 A API key from Wolfram Alpha is needed for this project which can be obtained [HERE](https://developer.wolframalpha.com/portal/apisignup.html).
 
 ## Usage
--------
+
 PyAssistant runs listening to everything waiting for the trigger word and greets you as soon its heard.
 The following are the current commands it can recognize:
 > **Usage**
@@ -57,6 +58,6 @@ The following are the current commands it can recognize:
 
 
 ## License
------- 
+
 This project is under General Public License, So do whatever you want with this, its pretty easy to customize. 
 
