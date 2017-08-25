@@ -1,7 +1,6 @@
 PyAssistant -- JARVIS
 ===================
 
------------
 
 **PyAssistant** is a home made customizable voice assistant similar to J.A.R.V.I.S coded in Python made for MacOS (can be adapted for Linux).
 
@@ -26,13 +25,13 @@ This project was built for Python3 and uses the following libraries:
 * [wolframalpha](https://github.com/jaraco/wolframalpha) - WolframAlpha for some questions
 * [Pyperclip](https://github.com/asweigart/pyperclip) - Clipboard Control
 * [pyHS100](https://github.com/GadgetReactor/pyHS100) - Library to control TP-Link products
-* [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/) - Motion detection surveillance camera
+* [Cheese](https://apps.ubuntu.com/cat/applications/precise/cheese/) - Webcam as surveillance camera
 * [Easymp3](https://github.com/S1mplyCompl3x/easymp3) - Downloading songs made simple
 
 for Linux you need to install:
 
 ```
-sudo apt-get install gnustep-gui-runtime motion streamer
+sudo apt-get install gnustep-gui-runtime cheese streamer 
 
 ```
 
@@ -60,6 +59,10 @@ The following are the current commands it can recognize:
 > - **"Search for (question)"** : searches google for the question
 > - **"Turn on the webcam, Webcam on"** : Turns on the webcam and stream it to localhost
 > - **"Download (song name)"** : Download the song to current directory
+> - **"Read my email, Read mail"** : Read the latest mails from personal email (Add values in readmail.py)
+> - And more ...
+
+
 
 
 

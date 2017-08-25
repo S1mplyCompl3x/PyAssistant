@@ -1,28 +1,30 @@
-#!/usr/bin/python
-
+#!/usr/bin/env python
+"""
+Created by S1mplyCompl3x
+https://github.com/S1mplyCompl3x
+"""
 import speech_recognition, wolframalpha, requests, pyperclip
 import os, random, time, webbrowser, sys, subprocess, inspect
 from pyHS100 import SmartPlug, SmartBulb
-# from pprint import pformat as pf
-# import textIT		#Coming Soon
 
 
-
-
-#-----------------NOT FINISHED YET-------------------#
-# def findNumber(name):
-# 	ans = helpers.findContact(name)
-# 	print(ans)	
 
 #-----------------Misc--------------------#
 def getPath():
 	p = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 	p +="/"
 	return p
+
+#-----------------MAIL CONTROL--------------------#
+def readMail():
+	path = getPath()
+	path += 'readmail.py'
+	process = subprocess.Popen(["nohup", "python3", path])
+	process.wait()
 	
 #----------------Webcam Control---------------#	
 def webcamSpy():
-	subprocess.Popen(["nohup", "motion"])
+	subprocess.Popen(["nohup", "cheese"])
 	
 def takeAPic():
 	os.system('streamer -f jpeg -o ~/Desktop/pic.jpeg')
@@ -105,7 +107,7 @@ def fixText(text):
 	return this
 	
 def speak(text):
-	os.system("say -v Ava '"+text+"'");
+	os.system("say '"+text+"'")	#Add -v (name) after if you want to change the voice
 
 #-----------------WOLFRAM ALPHA API--------------------#
 
@@ -157,7 +159,7 @@ def listen():
 		audio = recognizer.listen(source)
 
 	try:
-	# 		return recognizer.recognize_sphinx(audio)
+	# 		return recognizer.recognize_sphinx(audio)		#Uncomment if you want to use sphinx rather than google
 		return recognizer.recognize_google(audio)
 	except speech_recognition.UnknownValueError:
 		print("Could not understand audio")
@@ -172,6 +174,8 @@ def doSomething(theType):
 		print('listening...')
 		if (theType == 'talk'):
 			speak(getGreeting())
+			time.sleep(2)
+			print('speak now')
 			word = listen()
 		elif (theType == 'text'):
 			word = input('>')
@@ -229,13 +233,6 @@ def doSomething(theType):
 			speak("Reminders are cleared")
 		elif (word == "read my reminders" or word == "read the reminders" or word == "reminders"):
 			readThemReminders()
-# 		elif (find[0] == "text"):   #coming soon
-# 			person = find[1]
-# 			message = input('What do you want me to say')
-# # 			number = findNumber(person)
-# 			number = input('Phone number')
-# 			textIT.sendText(number, message)
-# 			print("Message SENT")
 		elif (find[0] == 'set'):
 			if(find[1] == 'an' or find[1] == 'a' or find[1] == 'alarm' or find[1] == 'timer'):
 				if(find[2] == 'alarm' or find[2] == 'timer' or find[2] == 'for'):
@@ -253,6 +250,14 @@ def doSomething(theType):
 		elif (word == 'take a picture' or word == 'take a pic' or word == 'take a pick'):
 			takeAPic()
 			speak('picture taken')
+		elif (find[0] == 'say'):
+			del find[0]
+			line = fixText(find)
+			speak(line)
+		elif (word == 'read my mail' or word == 'read my email' or word == 'read mail'):
+			readMail()
+			time.sleep(2)
+			
 			
 			
 			
@@ -269,6 +274,7 @@ def doSomething(theType):
 			webbrowser.open("https://google.com/search?q="+search)
 		else:
 			speak("I dont know how to respond to that")
+			time.sleep(2)
 		
 	
 		
@@ -291,7 +297,7 @@ while(1):
 	elif (theType == 'text'):
 		check = input(">")
 	print(check)
-	if (check == "JARVIS" or check == "jarvis"): #Put the name trigger for your assistant here
+	if (check == "Jarvis" or check == "jarvis"): #Put the name trigger for your assistant here
 		doSomething(theType)
 		
 		
