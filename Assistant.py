@@ -22,7 +22,7 @@ def getPath():
 	
 #----------------Webcam Control---------------#	
 def webcamSpy():
-	os.system('motion')
+	subprocess.Popen(["nohup", "motion"])
 	
 def takeAPic():
 	os.system('streamer -f jpeg -o ~/Desktop/pic.jpeg')
