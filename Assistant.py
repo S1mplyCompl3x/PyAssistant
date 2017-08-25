@@ -19,7 +19,20 @@ def getPath():
 	p = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 	p +="/"
 	return p
-
+	
+#----------------Webcam Control---------------#	
+def webcamSpy():
+	os.system('motion')
+	
+def takeAPic():
+	os.system('streamer -f jpeg -o ~/Desktop/pic.jpeg')
+	
+#----------------Download Song--------------------#
+def downloadTheSong(text):
+	path = getPath()
+	path += 'easymp3.py'
+	os.system("python3 "+path+" -a '"+text+"'")
+	
 #-------------------ALARM----------------------#
 def calculateTime(text):
 	base = int(text[0])
@@ -229,7 +242,17 @@ def doSomething(theType):
 					realTime = cleanAlarm(find)
 					setAlarm(realTime)
 					speak('Timer is set')
-			
+		elif (find[0] == 'download'):
+			del find[0]
+			song = fixText(find)
+			downloadTheSong(song)
+			speak('Song is downloaded')
+		elif (word == 'turn on the webcam' or word =='webcam on' or word == 'turn the webcam on'):
+			webcamSpy()
+			speak('webcam is on')
+		elif (word == 'take a picture' or word == 'take a pic' or word == 'take a pick'):
+			takeAPic()
+			speak('picture taken')
 			
 			
 			
