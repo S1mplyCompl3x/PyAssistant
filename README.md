@@ -26,11 +26,14 @@ This project was built for Python3 and uses the following libraries:
 * [wolframalpha](https://github.com/jaraco/wolframalpha) - WolframAlpha for some questions
 * [Pyperclip](https://github.com/asweigart/pyperclip) - Clipboard Control
 * [pyHS100](https://github.com/GadgetReactor/pyHS100) - Library to control TP-Link products
+* [Motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/) - Motion detection surveillance camera
+* [Easymp3](https://github.com/S1mplyCompl3x/easymp3) - Downloading songs made simple
 
 for Linux you need to install:
 
 ```
-sudo apt-get install gnustep-gui-runtime
+sudo apt-get install gnustep-gui-runtime motion streamer
+
 ```
 
 You can install the requirements by running pip on the requirements.txt or installing them individually.
@@ -55,9 +58,13 @@ The following are the current commands it can recognize:
 > - **"Show me (selected pictures)"** :  Opens the browser and show pictures
 > - **"what, how, who (question)"** : Asks wolfram and answer
 > - **"Search for (question)"** : searches google for the question
+> - **"Turn on the webcam, Webcam on"** : Turns on the webcam and stream it to localhost
+> - **"Download (song name)"** : Download the song to current directory
 
 
-## License
 
-This project is under General Public License, So do whatever you want with this, its pretty easy to customize. 
+
+## License & Final Thoughts
+
+This project is under General Public License, So do whatever you want with this just give me credit, its pretty easy to customize. 
 
