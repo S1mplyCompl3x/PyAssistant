@@ -27,6 +27,8 @@ This project was built for Python3 and uses the following libraries:
 * [pyHS100](https://github.com/GadgetReactor/pyHS100) - Library to control TP-Link products
 * [Cheese](https://apps.ubuntu.com/cat/applications/precise/cheese/) - Webcam as surveillance camera
 * [Easymp3](https://github.com/S1mplyCompl3x/easymp3) - Downloading songs made simple
+* [AIML](https://github.com/paulovn/python-aiml) - Artificial Intelligence Markup Language for Python 2.x and 3.x
+
 
 for Linux you need to install:
 
@@ -60,6 +62,7 @@ The following are the current commands it can recognize:
 > - **"Turn on the webcam, Webcam on"** : Turns on the webcam and stream it to localhost
 > - **"Download (song name)"** : Download the song to current directory
 > - **"Read my email, Read mail"** : Read the latest mails from personal email (Add values in readmail.py)
+> - **"Lets talk, Lets chat"** : Have a conversation with JARVIS
 > - And more ...
 
 

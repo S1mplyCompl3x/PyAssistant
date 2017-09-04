@@ -3,7 +3,7 @@
 Created by S1mplyCompl3x
 https://github.com/S1mplyCompl3x
 """
-import speech_recognition, wolframalpha, requests, pyperclip
+import speech_recognition, wolframalpha, requests, pyperclip, aiml
 import os, random, time, webbrowser, sys, subprocess, inspect
 from pyHS100 import SmartPlug, SmartBulb
 
@@ -14,7 +14,38 @@ def getPath():
 	p = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 	p +="/"
 	return p
+	
+#-----------------DONT TOUCH THIS--------------------#	
+def listen():
+	with speech_recognition.Microphone() as source:
+		recognizer.adjust_for_ambient_noise(source)
+		audio = recognizer.listen(source)
 
+	try:
+	# 		return recognizer.recognize_sphinx(audio)		#Uncomment if you want to use sphinx rather than google
+		return recognizer.recognize_google(audio)
+	except speech_recognition.UnknownValueError:
+		print("Could not understand audio")
+	except speech_recognition.RequestError as e:
+		print("Recog Error; {0}".format(e))
+	return ""
+	
+#-----------------PYTHON AIML------------------#
+def letsTalk(theType):
+	talk = ""
+	while(talk != 'bye'):
+		print('now')
+		if(theType == 'talk'):
+			talk = listen()
+		elif(theType == 'text'):
+			talk = input("> ")
+		result = ""
+		while(result == ""):
+			try:	
+				result = speak(k.respond(talk))
+			except:
+				pass
+				
 #-----------------MAIL CONTROL--------------------#
 def readMail():
 	path = getPath()
@@ -151,21 +182,7 @@ def lights(x):
 def playThatFunkyMusic():
 	print('Playing Music')
 # 	os.system('open ~/Desktop') #Put the location of your playlist file
-	
-#-----------------DONT TOUCH THIS--------------------#	
-def listen():
-	with speech_recognition.Microphone() as source:
-		recognizer.adjust_for_ambient_noise(source)
-		audio = recognizer.listen(source)
 
-	try:
-	# 		return recognizer.recognize_sphinx(audio)		#Uncomment if you want to use sphinx rather than google
-		return recognizer.recognize_google(audio)
-	except speech_recognition.UnknownValueError:
-		print("Could not understand audio")
-	except speech_recognition.RequestError as e:
-		print("Recog Error; {0}".format(e))
-	return ""
 	
 #-----------------QUESTION & ANSWER--------------------#
 def doSomething(theType):
@@ -257,6 +274,9 @@ def doSomething(theType):
 		elif (word == 'read my mail' or word == 'read my email' or word == 'read mail'):
 			readMail()
 			time.sleep(2)
+		elif(word =='lets talk' or word =="let's talk" or word=='talk' or word == 'talk to me' or word=='lets chat' or word =="let's chat"):
+			letsTalk(theType)
+			speak("Nice talking to you")
 			
 			
 			
@@ -267,8 +287,16 @@ def doSomething(theType):
 			webbrowser.open("https://www.google.com/search?q="+search+"&source=lnms&tbm=isch&sa=X")
 		elif (find[0] == "how" or find[0] == "who" or find[0] == "what"):
 			search = fixText(find)
-			ans = wolframThisShit(search)
-			speak(ans)
+			try:
+				ans = wolframThisShit(search)
+				speak(ans)
+			except:
+				speak("would you like me to google that")
+				ans = listen()
+				print(ans)
+				if (ans == "yes" or ans == "yeah" or ans == "please" or ans =="yea"):
+					search = makeItPretty(find)
+					webbrowser.open("https://www.google.com/search?q="+search+"&source=lnms&tbm=isch&sa=X")
 		elif (find[0] == "search" or find[0] == "find" or find[0] == "look"):
 			search = makeItPretty(find)
 			webbrowser.open("https://google.com/search?q="+search)
@@ -282,6 +310,9 @@ def doSomething(theType):
 	
 #---------------------------MAIN---------------------------#
 recognizer = speech_recognition.Recognizer()
+k = aiml.Kernel()
+k.learn("std-startup.xml")
+k.respond("load aiml b")
 theType = str(sys.argv)
 if (len(sys.argv) < 2):
 	theType = 'talk'
